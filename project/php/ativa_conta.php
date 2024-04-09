@@ -6,7 +6,7 @@ $token_hash = hash("sha256", $token);
 
 $mysqli = require __DIR__ . "/banco.php";
 
-$sql = "SELECT * FROM user
+$sql = "SELECT * FROM usuarios
         WHERE email_token = ?";
 
 $stmt = $mysqli->prepare($sql);
@@ -20,11 +20,11 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 
 if ($user === null) {
-    die("token not found");
+    die("Houve um erro e seu usuario não foi encontrado :(");
 }
 
-$sql = "UPDATE user
-        SET account_activation_hash = NULL
+$sql = "UPDATE usuarios
+        SET email_token = NULL
         WHERE id = ?";
 
 $stmt = $mysqli->prepare($sql);

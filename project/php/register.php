@@ -1,7 +1,7 @@
 <?php
 $email_token = bin2hex(random_bytes(16));
 
-$email_token_hash = hash("sha256", $activation_token);
+$email_token_hash = hash("sha256", $email_token);
 
 $mysqli = require __DIR__ . "/banco.php";
 
@@ -22,10 +22,10 @@ if ($stmt->execute()) {
 
     $mail->setFrom("fitpill.services@gmail.com");
     $mail->addAddress($_POST["email"]);
-    $mail->Subject = "Ativação de Conta - FitPill";
+    $mail->Subject = "Ative sua conta - FitPill";
     $mail->Body = <<<END
 
-    Clique <a href="http://example.com/ativa_conta.php?token=$email_token">aqui</a> 
+    Bem vindo ao Fitpill! Clique <a href="http://localhost/project/php/ativa_conta.php?token=$email_token">aqui</a> 
     para ativar sua conta.
 
     END;
