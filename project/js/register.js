@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 async function submitRegister() {
-    var password = document.getElementById("password");
-    var hash = CryptoJS.SHA256(password).toString();
-
     var formData = new FormData(document.getElementById("register"));
+    var password = formData.get("password")
+    var hash = CryptoJS.SHA256(password).toString();
     formData.set("password", hash);
 
     var user = formData.get("user");
@@ -47,14 +46,12 @@ async function submitRegister() {
             body: formData
         });
 
-        // Verificar se a requisição foi bem-sucedida
         if (response.ok) {
-            alert("Cadastro feito com sucesso");
+            alert("Cadastro feito com sucesso! Verifique sua caixa de entrada para verificação");
         } else {
-            alert("Error occurred, try again later...");
+            alert("Ocorreu um erro no envio!, tente novamente...");
         }
     } catch (error) {
         console.error("Error:", error);
-        alert("Error occurred, try again later...");
     }
 }

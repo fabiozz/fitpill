@@ -5,11 +5,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `usuario` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `usuario` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL UNIQUE,
+  `email` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL UNIQUE,
   `senha_usuario` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_token` varchar(64) DEFAULT NULL UNIQUE,
+  `troca_senha_token` varchar(64) DEFAULT NULL UNIQUE,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
