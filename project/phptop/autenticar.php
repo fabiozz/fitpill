@@ -3,7 +3,7 @@ $secret = 'JFG2E74HV663OVETGIATQ6MN3QLMKD3IGTOPXN5JGWLCBGVKIRTWQE7K7QVVBANHXMQD7
 $input = isset($_POST['otp']) ? $_POST['otp'] : null; 
 use OTPHP\TOTP;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $resultado = ''; 
 

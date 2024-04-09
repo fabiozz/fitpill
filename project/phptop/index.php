@@ -15,7 +15,7 @@
     <?php
     use OTPHP\TOTP;
 
-    require 'vendor/autoload.php';
+    require __DIR__ . '/../vendor/autoload.php';
 
     // Secret already provided
     $secret ='JFG2E74HV663OVETGIATQ6MN3QLMKD3IGTOPXN5JGWLCBGVKIRTWQE7K7QVVBANHXMQD73C37HLCI4Z6WWCVBFQZW5RAXE4VJQOXAYI';
