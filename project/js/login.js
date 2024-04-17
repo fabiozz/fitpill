@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 async function submitLogin() {
     var formData = new FormData(document.getElementById("login"));
+    var user = formData.get("user")
     var password = formData.get("password")
     var hash = CryptoJS.SHA256(password).toString();
     formData.set("password", hash);
@@ -18,12 +19,7 @@ async function submitLogin() {
         });
 
         var data = await response.text();
-
-        if (data.includes("Login Sucedido!")) {
-            alert("Login sucedido!");
-        } else {
-            alert("Erro no login");
-        }
+        alert(data)
     } catch (error) {
         console.error("Error:", error);
     }

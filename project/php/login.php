@@ -1,25 +1,26 @@
 <?php
+$mysqli = require __DIR__ . "/banco.php";
+
 $user = $_POST['user'];
 $password = $_POST['password'];
 
-$mysqli = require __DIR__ . "/banco.php";
-
-$sql = "SELECT * FROM usuarios WHERE usuario =? AND senha_usuario =?";
+$sql = "SELECT * FROM usuarios
+        WHERE usuario = ? AND senha_usuario = ?";
 
 $stmt = $mysqli->prepare($sql);
-
-$stmt->bind_param("ss", $user, $password);
+$stmt->bind_param("ss",$user, $password);
 
 $stmt->execute();
 
-$stmt->store_result();
+$result = $stmt->get_result();
 
-if ($stmt->num_rows > 0){
-    echo "Login Sucedido!";
-} else {
-    die("Usuario ou senha inválidos!");
+$user = $result->fetch_assoc();
+
+if ($user === null) {
+    die($user);
 }
-
-$stmt->close()
+else{
+    echo "Usuário válido";
+}
 
 ?>
