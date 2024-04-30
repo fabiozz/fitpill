@@ -1,4 +1,6 @@
 <?php
+
+
 $mysqli = require __DIR__ . "/banco.php";
 
 $user = $_POST['user'];
@@ -14,13 +16,16 @@ $stmt->execute();
 
 $result = $stmt->get_result();
 
-$user = $result->fetch_assoc();
+$db_user = $result->fetch_assoc();
 
-if ($user === null) {
+if ($db_user === NULL) {
+    echo "teste";
     die($user);
 }
 else{
+    session_start();
+    $_SESSION["user"] = $user;
+    $_SESSION["timeout"] = time();
+    print_r($_SESSION);
     echo "Usuário válido";
 }
-
-?>
