@@ -1,27 +1,46 @@
 <html>
-
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Recuperar Senha</title>
         <link rel="stylesheet" href="css/login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
         <script src="js/trocar.js"></script>
     </head>
-    <body class="body">
-        <div class="wrapper">
-            <div class="loginform">
-                <form id="trocar">
-                    <h1>Esqueceu sua senha?</h1>
-                    <div class="input-box">
-                        <input type="text" placeholder="Nova senha" id="password" name="password" required>
-                        <i class="fa fa-lock"></i>
-                    </div>
-                    <input type="submit" class="button" value="Trocar senha">
-                </form>
+    <body>
+        <section>
+            <div class="image-box">
+                <img src="img/arnold.jpg">
             </div>
-        </div>
+            <div class="content-box">
+                <div class="form-box">
+                    <h2>Esqueceu sua senha?</h2>
+                    <form id="trocar">
+                        <div class="input-box">
+                            <span>Nova Senha</span>
+                            <input type="password" id="password" name="password" class="password-input" required>
+                            <i class="fa fa-eye show-password" id="eye" ></i>
+
+                            <div class="password-checklist">
+                                <h3>Senha deve conter</h3>
+                                <ul class="checklist">
+                                    <li class="list-item">8 Caracteres</li>
+                                    <li class="list-item">1 Número</li>
+                                    <li class="list-item">1 Letra mínuscula</li>
+                                    <li class="list-item">1 Letra maiúscula</li>
+                                    <li class="list-item">1 Caractere especial</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="input-box">
+                            <input type="submit" value="Trocar Senha">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <script src="js/eye.js"></script>
+        <script src="js/verify.js"></script>
     </body>
-
-
 </html>

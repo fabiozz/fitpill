@@ -1,97 +1,220 @@
-.body {
-    background-color: black;
-    background-size: cover;
-    background-position: center;
-}
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
 }
 
-.loginform {
-    width: 420px;
-    background: transparent;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255 ,1);
-    color: white;
-    border-radius: 20px;
-    padding: 30px 40px;
+section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
 }
 
-.loginform h1 {
-    font-size: 30px;
-    text-align: center;
-    
+section .image-box {
+    position: relative;
+    width: 50%;
+    height: 100%;
 }
 
-.wrapper {
+section .image-box:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+section .image-box img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+section .content-box {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    margin-top: -100px;
+    width: 50%;
+    height: 100%;
 }
 
-.wrapper .loginform .input-box {
-    width: 100%;
-    height: 50px;
-    margin: 30px 0;
+section .content-box .form-box {
+    width: 50%;
+}
+
+section .content-box .form-box h2{
+    color: grey;
+    font-weight: 600;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #582c2b;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+
+section .content-box .form-box .input-box {
+    margin-bottom: 20px;
     position: relative;
 }
 
-.input-box input{
+section .content-box .form-box .input-box span{
+    font-size: 16px;
+    margin-bottom: 5px;
+    display: inline-block;
+    color: grey;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+section .content-box .form-box .input-box input{
     width: 100%;
-    height: 100%;
+    padding: 10px 20px;
+    outline: none;
+    font-weight: 400;
+    border: 1px solid grey;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: grey;
     background: transparent;
-    border: none;
+    border-radius: 10px;
+}
+
+section .content-box .form-box .input-box input[type="submit"] {
+    background: #582c2b;
+    color: #fff;
     outline: none;
-    border: 2px solid rgba(255,255,255,1);
-    border-radius: 40px;
-    font-size: 16px;
-    color: white;
-    padding: 20px;
-}
-
-.input-box input::placeholder {
-    color: white;
-}
-
-.input-box i {
-    position: absolute;
-    right: 20px;
-    top: 35%;
-    font-size: 16px;
-}
-
-.button {
-    width: 100%;
-    height: 40px;
-    background: white;
     border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0,0, 10p rgba(0, 0, 0, .1);
+    font-weight: 500;
     cursor: pointer;
+}
+
+section .content-box .form-box .input-box input[type="submit"]:hover {
+    background: #582c2bcc;
+}
+
+section .content-box .form-box .input-box .show-password{
+    cursor: pointer;
+}
+
+section .content-box .form-box .input-box i {
+    position: absolute;
+    margin-top: 12;
+    right: 20px;
     font-size: 16px;
-    font-weight: 600;
-    color: #333;
+    color: #582c2b;
 }
 
-.register {
-    font-size: 15px;
-    text-align: center;
-    margin-top: 15px;
-    margin: 20px 0 15px;
+section .content-box .form-box .input-box p {
+    color: grey;
 }
 
-.register p a {
-    color: white;
+section .content-box .form-box .input-box p a {
+    color: #582c2b;
     text-decoration: none;
     font-weight: 600;
+    font-size: 16px;
 }
 
-.register p a:hover {
-    text-decoration: underline;
+/* Verificaçao de senha dinamica */
+
+section .content-box .form-box .input-box .password-checklist {
+    display: none;
+    color: grey;
+    top: calc(100% + 10px);
+    width: 100%;
+    padding: 20px 30px;
+    background: #582c2b;
+    pointer-events: none;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+section .content-box .form-box .input-box .password-input:focus ~ .password-checklist {
+    display: block;
+    -webkit-animation: fadeIn .5s;
+    animation: fadeIn .5s;
+}
+
+
+section .content-box .form-box .input-box .password-checklist h3 {
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+section .content-box .form-box .input-box .checklist {
+    list-style: none;
+}
+section .content-box .form-box .input-box .checklist .list-item {
+    padding-left: 30px;
+    font-size: 14px;
+}
+
+section .content-box .form-box .input-box .checklist .list-item::before {
+    content: '\f00d';
+    font-family: FontAwesome;
+    display: inline-block;
+    margin: 8px 0px;
+    margin-left: -30px;
+    width: 20px;
+    font-size: 12px;
+}
+
+section .content-box .form-box .input-box .checklist .list-item.checked {
+    opacity: 0.5;
+}
+
+section .content-box .form-box .input-box .checklist .list-item.checked::before {
+    content: '\f00c';
+    color: green;
+}
+
+/* Responsividade */
+
+@media (max-width: 768px) {
+    section .image-box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    section .content-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    section .content-box .form-box {
+        width: 100%;
+        padding: 40px;
+        background: rgb(255 255 255 / 0.9);
+        margin: 50px;
+    }
+
+    section .content-box .form-box h3 {
+        color: grey;
+        text-align: center;
+        margin: 30px 0 10px;
+        font-weight: 500;
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+      to { opacity: 1; }
 }
