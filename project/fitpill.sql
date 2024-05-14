@@ -10,8 +10,9 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `senha_usuario` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_token` varchar(64) DEFAULT NULL UNIQUE,
   `troca_senha_token` varchar(64) DEFAULT NULL UNIQUE,
+  `segredo_2fa` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 COMMIT;
 
