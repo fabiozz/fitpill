@@ -23,6 +23,7 @@ if ($db_user === NULL) {
     die($user);
 }
 else{
+    ob_clean();
     session_start();
     $_SESSION["user"] = $user;
     $_SESSION["timeout"] = time();
