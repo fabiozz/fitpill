@@ -10,9 +10,13 @@ async function checkLogged() {
             body: ""
         });
         var data = await response.text();
-        alert(data)
         if(data == "not_log"){
-            alert("Usuário não logado")
+            alert("Usuário não logado");
+            window.location.href = "login.html";
+        }
+        if(data == "session_to"){
+            alert("Timeout de sessão");
+            window.location.href = "login.html";
         }
     } catch (error) {
         console.error("Error:", error);
