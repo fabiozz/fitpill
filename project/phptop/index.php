@@ -20,16 +20,16 @@ $result_last_user = $mysqli->query($sql_last_user);
 
 if ($result_last_user->num_rows > 0) {
     $row_last_user = $result_last_user->fetch_assoc();
-    $usuario = $row_last_user['usuario'];
+    $user = $row_last_user['usuario'];
 } else {
     echo "Nenhum usuário encontrado no banco de dados.";
 }
 
-function generateSecret(string $usuario): string
+function generateSecret(string $user): string
 {
     $googleAuthenticator = new PHPGangsta_GoogleAuthenticator();
     $secret = $googleAuthenticator->createSecret();
-    $label = $usuario . '@fitpill.com';
+    $label = $user . '@fitpill.com';
     if ($label === null) {
         throw new \UnexpectedValueException('Unexpected null value for label');
     }
@@ -40,10 +40,10 @@ function generateSecret(string $usuario): string
     return $secret;
 }
 
-$secret = generateSecret($usuario);
+$secret = generateSecret($user);
 
 $otp = TOTP::create($secret);
-$otp->setLabel($usuario . '@fitpill.com');
+$otp->setLabel($user . '@fitpill.com');
 
 $grCodeUri = $otp->getQrCodeUri(
     'https://api.qrserver.com/v1/create-qr-code/?data=[DATA]&size=300x300&ecc=M',
@@ -56,7 +56,7 @@ $stmt = $mysqli->prepare($sql);
 
 // Verifica se a preparação da declaração foi bem-sucedida
 if ($stmt) {
-    $stmt->bind_param("ss", $secret, $usuario);
+    $stmt->bind_param("ss", $secret, $user);
     $stmt->execute();
     $stmt->close();
 } else {
@@ -71,19 +71,24 @@ if ($stmt) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/autenticar.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Register Authenticator</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
-<body class="body">
-<div class="wrapper">
-    <div class="loginform">
-        <h1>Autenticação de dois Fatores</h1>
-        <p>Escaneie para ativar a autenticação de dois fatores:</p>
-        <div class="qrcode" style="border: 1px solid #ccc; padding: 10px;">
-            <img src="<?php echo $grCodeUri; ?>" alt="QR Code" style="max-width: 100%;">   </div>
-        </form>
-    </div>
-</div>
+<body>
+    <section>
+        <div class="image-box">
+                <img src="../img/arnold.jpg">
+        </div>
+        <div class="content-box">
+            <div class="form-box">
+                <h2>Autenticação de dois Fatores</h2>
+                <h3>Escaneie para ativar a autenticação de dois fatores:</h3>
+                <div class="qrcode" style="border: 1px solid #ccc; padding: 50px;">
+                    <img src="<?php echo $grCodeUri; ?>" alt="QR Code" style="max-width: 100%; margin: 0 auto;">
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
