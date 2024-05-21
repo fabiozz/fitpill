@@ -1,12 +1,10 @@
 <?php
-session_start();
 use OTPHP\TOTP;
+require _DIR_ . '/../vendor/autoload.php';
 
-require __DIR__ . '/../vendor/autoload.php'; 
+$resultado = '';
 
-if (isset($_POST["user"])) {
-    $user = $_POST["user"];
-
+if (isset($_POST['user'])) {
     $host = "localhost";
     $dbname = "fitpill";
     $username = "root";
@@ -15,33 +13,35 @@ if (isset($_POST["user"])) {
     $mysqli = new mysqli($host, $username, $password, $dbname);
 
     if ($mysqli->connect_errno) {
-        die("Connection error: " . $mysqli->connect_error);
-    }
+        $resultado = 'Erro de conexão com o banco de dados: ' . $mysqli->connect_error;
+    } else {
+        $user = $_POST['user'];
+        $sql = "SELECT segredo_2fa FROM usuarios WHERE usuario = ?";
+        $stmt = $mysqli->prepare($sql);
+        $stmt->bind_param("s", $user);
+        $stmt->execute();
+        $stmt->bind_result($secret);
+        $stmt->fetch();
+        $stmt->close();
 
-    $sql = "SELECT segredo_2fa FROM usuarios WHERE usuario = ?";
-    $stmt = $mysqli->prepare($sql);
-    $stmt->bind_param("s", $user);
-    $stmt->execute();
-    $stmt->bind_result($db_secret);
-    $stmt->fetch();
-    $stmt->close();
-
-    if (!$db_secret) {
-        die("O usuario não tem 2FA configurado.");
-    }
-
-    $otp = TOTP::create($db_secret);
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $submitted_code = $_POST["otp"];
-        $is_valid = $otp->verify($submitted_code);
-
-        if ($is_valid) {
-            echo json_encode(['status' => 'success', 'message' => 'Autenticado.']);
+        if (!$secret) {
+            $resultado = 'O usuário não tem 2FA configurado.';
         } else {
-            echo json_encode(['status' => 'error', 'message' => 'Codigo incorreto.']);
+            $input = isset($_POST['otp']) ? $_POST['otp'] : null;
+
+            if ($input !== null) {
+                $otp = TOTP::create($secret);
+                $check = $otp->verify($input);
+
+                $resultado = $check ? 'Autenticado.' : 'Não autenticado.';
+            }
         }
+
+        $mysqli->close();
     }
-    $mysqli->close();
+} else {
+    $resultado = 'Parâmetro de usuário ausente.';
 }
+
+echo $resultado;
 ?>
