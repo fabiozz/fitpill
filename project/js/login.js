@@ -23,5 +23,5 @@ async function submitLogin() {
     } catch (error) {
         console.error("Error:", error);
     }
-    window.location.href = "logged.html"
+    window.location.href = "autenticar.html"
 }

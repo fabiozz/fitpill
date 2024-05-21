@@ -3,31 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/login.css"> 
+    <link rel="stylesheet" href="css/login.css"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Authenticator</title>
 </head>
 <body>
-    <div class="image-box">
-        <img src="../img/arnold.jpg">
-    </div>
-    <div class="content-box">
-        <div class="loginform"> 
-            <h1>Informe Token de autenticação de 2 fatores</h1>
-            <form id="auth-form" action="autenticar.php" method="POST">
-                <label for="otp"></label>
-                <div class="input-box">
-                    <input type="text" id="otp" name="otp" required>
-                    <input type="hidden" id="user" name="user" value="exampleUser"> <!-- Adicione o campo user aqui -->
-                    <button class="button" type="submit">Verificar</button>
-                    <i class="fa fa-envelope"></i>
-                </div>
-            </form>
-            <br>
-            <br>
-            <div class="resultado" id="resultado"></div>
+    <section>
+        <div class="image-box">
+            <img src="img/arnold.jpg">
         </div>
-    </div>
-    <script src="autenticar.js"></script>
+        <div class="content-box">
+            <div class="form-box"> 
+                <h2>Informe Token de autenticação de 2 fatores</h2>
+                <form id="auth-form" action="autenticar.php" method="POST">
+
+                    <div class="input-box">
+                        <span>Código</span>
+                        <input type="text" id="otp" name="otp" required>
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" value="Verificar">
+                    </div>
+                </form>
+                <br>
+                <br>
+                <div class="resultado" id="resultado"></div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

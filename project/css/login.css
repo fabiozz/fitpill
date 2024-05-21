@@ -105,7 +105,7 @@ section .content-box .form-box .input-box .show-password{
 
 section .content-box .form-box .input-box i {
     position: absolute;
-    margin-top: 12;
+    margin-top: 12px;
     right: 20px;
     font-size: 16px;
     color: #582c2b;
