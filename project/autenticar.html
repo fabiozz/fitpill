@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/login.css"> 
+    <link rel="stylesheet" href="css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Authenticator</title>
 </head>
 <body>
     <section>
         <div class="image-box">
-            <img src="img/arnold.jpg">
+            <img src="img/arnold.jpg" alt="Image">
         </div>
         <div class="content-box">
-            <div class="form-box"> 
+            <div class="form-box">
                 <h2>Informe Token de autenticação de 2 fatores</h2>
-                <form id="auth-form" action="autenticar.php" method="POST">
-
+                <form id="auth-form">
+                    <div class="input-box">
+                        <span>Usuário</span>
+                        <input type="text" id="user" name="user" required>
+                        <i class="fa fa-user"></i>
+                    </div>
                     <div class="input-box">
                         <span>Código</span>
                         <input type="text" id="otp" name="otp" required>
@@ -32,5 +36,46 @@
             </div>
         </div>
     </section>
+
+    <script>
+        async function verifyOTP(event) {
+            event.preventDefault();
+
+            const user = document.getElementById('user').value;
+            const otp = document.getElementById('otp').value;
+
+            if (!user || !otp) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            try {
+                const response = await fetch('php/autenticar.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: 'user=' + encodeURIComponent(user) + '&otp=' + encodeURIComponent(otp)
+                });
+
+                const result = await response.text();
+                const resultadoDiv = document.getElementById('resultado');
+                resultadoDiv.innerHTML = result;
+
+                if (result.includes('Autenticado.')) {
+                    resultadoDiv.style.color = 'green';
+                } else {
+                    resultadoDiv.style.color = 'red';
+                }
+            } catch (error) {
+                console.error('Erro:', error);
+                alert('Ocorreu um erro ao tentar autenticar.');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('auth-form').addEventListener('submit', verifyOTP);
+        });
+    </script>
 </body>
 </html>
