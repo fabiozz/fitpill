@@ -11,3 +11,4 @@ if (time() - $_SESSION["timeout"] > 15 * 60){
     session_destroy();
     die("session_to");
 }
+?>
