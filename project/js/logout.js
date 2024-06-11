@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logoutForm = document.getElementById('logoutForm');
-    logoutForm.addEventListener('submit', handleLogout);
+    logoutForm.addEventListener('submit', logout);
 });
 
 async function logout(event) {

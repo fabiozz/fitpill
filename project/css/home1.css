@@ -8,20 +8,16 @@ h1 {
     margin-top: 20px;
 }
 
-form {
+.fo {
     margin: 20px 0;
 }
 
 input[type="number"], input[type="submit"] {
-    margin: 5px 0;
-    padding: 10px;
     width: 100%;
     box-sizing: border-box;
 }
 
 input[type="submit"] {
-    background-color: #333;
-    color: white;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -52,4 +48,16 @@ input[type="submit"]:hover {
 
 .register-card h1 {
     margin-bottom: 20px;
+}
+
+.btn {
+    margin: 0 0;
+    padding: 0;
+    background: #582c2b;
+    color: #fff;
+    padding: 4px 8px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 32px;
+    height: 50%;
 }

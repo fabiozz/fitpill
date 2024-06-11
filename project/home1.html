@@ -1,11 +1,12 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/home1.css">
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="js/logged.js"></script>
+    <script src="js/logout.js" defer></script>
     <title>Registro - Fitpill</title>
 </head>
 <body>
@@ -15,10 +16,13 @@
             <h1>Fitpill</h1>
         </div>
         <ul>
+            <form id="logoutForm">
+                <input type="submit" class="btn" value="Logout" >
+            </form>
             <li><a href="home.html">Home</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Blog</a></li>
-            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Contacts</a></li>
         </ul>
         <div class="hamburger">
             <span class="line"></span>
@@ -37,7 +41,7 @@
     <section class="register">
         <div class="register-card">
             <h1>Registro de Treino e Dieta</h1>
-            <form id="fitnessForm" action="php/process.php" method="POST">
+            <form id="fitnessForm" class="fo" action="php/process.php" method="POST">
                 <label for="altura">Altura (em cm):</label>
                 <input type="number" id="altura" name="altura" required><br><br>
 
@@ -47,11 +51,10 @@
                 <label for="dias">Dias por semana que pode treinar:</label>
                 <input type="number" id="dias" name="dias" min="1" max="7" required><br><br>
 
-                <input type="submit" value="Gerar Plano">
+                <input type="submit" class="btn" value="Gerar Plano">
             </form>
         </div>
     </section>
-    
     <script src="js/navbar.js"></script>
     <script src="js/form.js"></script>
 </body>
