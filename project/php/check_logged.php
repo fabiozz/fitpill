@@ -1,14 +1,15 @@
 <?php
-session_start();
-if (isset($_SESSION["user"])) {
-    echo "Bem vindo, " . htmlspecialchars($_SESSION['user']) . "!";
-}
-else{
-    die("not_log");
-}
-
-if (time() - $_SESSION["timeout"] > 15 * 60){
-    session_destroy();
-    die("session_to");
-}
+    session_start();
+    if (isset($_SESSION["user"])) {
+        if (isset ($_SESSION['timeout']) && (time() - $_SESSION['timeout'] > 15 * 60)) {
+            session_unset();
+            session_destroy();
+            exit;
+        } else {
+            $_SESSION['timeout'] = time();
+        }
+        echo json_encode("True");
+    } else{
+        echo json_encode("False");
+    }
 ?>

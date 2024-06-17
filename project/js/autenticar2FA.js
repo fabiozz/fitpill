@@ -10,44 +10,35 @@ window.addEventListener('pageshow', async function(event) {
             console.error('Erro no envio da chave! ->', error);
         }
     }) ();
+
+    try {
+        const data = await checkSession();
+
+        if (data === "False") {
+            alert('Voce nao está logado! Redirecionando para página de login.');
+            location.href = 'login.html';
+        }
+    } catch (error) {
+        console.error('Erro durante verificacão ->', error);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('trocar').addEventListener('submit', function(e) {
+    document.getElementById('auth-form').addEventListener('submit', function(e) {
         e.preventDefault();
-        changePass();
+        verifyOTP();
     });
 });
 
-async function changePass() {
-    var formData = new FormData(document.getElementById("trocar"));
-    var password = formData.get("password")
-    var hash = CryptoJS.SHA256(password).toString();
-    let params = new URL(document.location).searchParams;
-    let token = params.get("token");
-
-    formData.append("token", token);
-    formData.set("password", hash);
-
-    if (!/[A-Z]/.test(password)){
-        alert("Senha deve conter ao menos uma letra maiúscula");
-        return;
-    }
-    if (!/[a-z]/.test(password)){
-        alert("Senha deve conter ao menos uma letra minúscula");
-        return;
-    }
-    if (password.length < 8 || password.length > 20){
-        alert("Senha deve ser maior que 8 caracteres e menor que 20");
-        return;
-    }
+async function verifyOTP() {
+    var formData = new FormData(document.getElementById("auth-form"));
 
     var formDataObject = {};
     formData.forEach((value, key) => formDataObject[key] = value);
 
     try {
         const encryptedData = encryptAES(formDataObject, aesKey);
-        const response = await fetch("php/recuperar.php", {
+        const response = await fetch("php/autenticar.php", {
             method: "POST",
             body: JSON.stringify({
                 iv: encryptedData.iv,
@@ -55,11 +46,21 @@ async function changePass() {
             })
         });
 
-        const data = await response.json();
-        if (response.ok)
-            alert(data.message);
+        const res = await response.json();
+        const resultadoDiv = document.getElementById('resultado');
+
+        if (res.error) {
+            resultadoDiv.innerHTML = res.error;
+            resultadoDiv.style.color = 'red';
+        } else if (res.message) {
+            resultadoDiv.innerHTML = res.message;
+            resultadoDiv.style.color = 'green';
+            alert("Usuário verificado com sucesso!");
+            window.location.href = 'home1.html'
+        }
     } catch (error) {
-        console.error("Error:", error);
+        console.error('Erro:', error);
+        alert('Ocorreu um erro ao tentar autenticar.');
     }
 }
 

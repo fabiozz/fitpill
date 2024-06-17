@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="css/navbar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Authenticator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/forge/0.10.0/forge.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.0.0-beta.1/jsencrypt.min.js"></script>
+    <script src="js/checkSession.js"></script>
+    <script src="js/autenticar2FA.js"></script>
 </head>
 <body>
     <nav>
@@ -59,11 +64,6 @@
                 <h2>Informe Token de autenticação de 2 fatores</h2>
                 <form id="auth-form">
                     <div class="input-box">
-                        <span>Usuário</span>
-                        <input type="text" id="user" name="user" required>
-                        <i class="fa fa-user"></i>
-                    </div>
-                    <div class="input-box">
                         <span>Código</span>
                         <input type="text" id="otp" name="otp" required>
                         <i class="fa fa-envelope"></i>
@@ -73,52 +73,10 @@
                     </div>
                 </form>
                 <br>
-                <br>
                 <div class="resultado" id="resultado"></div>
             </div>
         </div>
     </section>
-
     <script src="js/navbar.js"></script>
-    <script>
-        async function verifyOTP(event) {
-            event.preventDefault();
-
-            const user = document.getElementById('user').value;
-            const otp = document.getElementById('otp').value;
-
-            if (!user || !otp) {
-                alert('Por favor, preencha todos os campos.');
-                return;
-            }
-
-            try {
-                const response = await fetch('php/autenticar.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: 'user=' + encodeURIComponent(user) + '&otp=' + encodeURIComponent(otp)
-                });
-
-                const result = await response.text();
-                const resultadoDiv = document.getElementById('resultado');
-                resultadoDiv.innerHTML = result;
-
-                if (result.includes('Autenticado.')) {
-                    resultadoDiv.style.color = 'green';
-                } else {
-                    resultadoDiv.style.color = 'red';
-                }
-            } catch (error) {
-                console.error('Erro:', error);
-                alert('Ocorreu um erro ao tentar autenticar.');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('auth-form').addEventListener('submit', verifyOTP);
-        });
-    </script>
 </body>
 </html>

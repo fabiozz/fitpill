@@ -10,44 +10,39 @@ window.addEventListener('pageshow', async function(event) {
             console.error('Erro no envio da chave! ->', error);
         }
     }) ();
+
+    try {
+        const data = await checkSession();
+
+        if (data === "True") {
+            alert('Voce já está logado! Redirecionando para página principal.');
+            location.href = 'home1.html';
+        }
+    } catch (error) {
+        console.error('Erro durante verificacão ->', error);
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('trocar').addEventListener('submit', function(e) {
+    document.getElementById('login').addEventListener('submit', function(e) {
         e.preventDefault();
-        changePass();
+        submitLogin();
     });
 });
 
-async function changePass() {
-    var formData = new FormData(document.getElementById("trocar"));
-    var password = formData.get("password")
+async function submitLogin() {
+    var formData = new FormData(document.getElementById("login"));
+    var user = formData.get("user");
+    var password = formData.get("password");
     var hash = CryptoJS.SHA256(password).toString();
-    let params = new URL(document.location).searchParams;
-    let token = params.get("token");
-
-    formData.append("token", token);
     formData.set("password", hash);
-
-    if (!/[A-Z]/.test(password)){
-        alert("Senha deve conter ao menos uma letra maiúscula");
-        return;
-    }
-    if (!/[a-z]/.test(password)){
-        alert("Senha deve conter ao menos uma letra minúscula");
-        return;
-    }
-    if (password.length < 8 || password.length > 20){
-        alert("Senha deve ser maior que 8 caracteres e menor que 20");
-        return;
-    }
 
     var formDataObject = {};
     formData.forEach((value, key) => formDataObject[key] = value);
 
     try {
         const encryptedData = encryptAES(formDataObject, aesKey);
-        const response = await fetch("php/recuperar.php", {
+        const response = await fetch("php/login.php", {
             method: "POST",
             body: JSON.stringify({
                 iv: encryptedData.iv,
@@ -56,11 +51,11 @@ async function changePass() {
         });
 
         const data = await response.json();
-        if (response.ok)
-            alert(data.message);
+        alert(data.message);
     } catch (error) {
         console.error("Error:", error);
     }
+    window.location.href = "autenticar.html"
 }
 
 async function getCertificate() {

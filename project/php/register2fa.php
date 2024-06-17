@@ -4,16 +4,7 @@ use OTPHP\TOTP;
 
 require __DIR__ . '/../vendor/autoload.php'; 
 
-$host = "localhost";
-$dbname = "fitpill";
-$username = "root";
-$password = "";
-
-$mysqli = new mysqli($host, $username, $password, $dbname);
-
-if ($mysqli->connect_errno) {
-    die("Connection error: " . $mysqli->connect_error);
-}
+$mysqli = require __DIR__ . "/banco.php";
 
 $sql_last_user = "SELECT usuario FROM usuarios ORDER BY id DESC LIMIT 1";
 $result_last_user = $mysqli->query($sql_last_user);
