@@ -3,7 +3,7 @@
 $host = "localhost";
 $dbname = "fitpill";
 $username = "root";
-$password = "";
+$password = require __DIR__ . "/pass.php";
 
 $mysqli = new mysqli(hostname: $host,
                      username: $username,

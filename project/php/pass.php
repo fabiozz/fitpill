@@ -21,6 +21,6 @@ foreach ($files as $file) {
 
 $pass = implode('', array_slice($letters, 0, 16));
 
-echo $pass;
+return $pass
 
 ?>
