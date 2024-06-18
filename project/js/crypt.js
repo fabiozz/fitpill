@@ -16,7 +16,7 @@ window.addEventListener('pageshow', async function(event) {
 
         if (data === "True") {
             alert('Voce já está logado! Redirecionando para página principal.');
-            location.href = 'home1.html';
+            location.href = 'homep.html';
         }
     } catch (error) {
         console.error('Erro durante verificacão ->', error);

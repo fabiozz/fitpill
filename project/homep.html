@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/userpage.css">
+    <script src="js/checkSession.js"></script>
+    <script src="js/checkSession2FA.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/logout.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="img/fitpill.png" alt="logo" />
+            <h1>Fitpill</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="home.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+            <div class="logout">
+                <button id="logoutButton">Logout</button>
+            </div>
+        </ul>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+    <div class="menubar">
+        <ul>
+            <li>
+                <a href="home.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+            <li>
+                <button id="logoutButton">Logout</button>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="card">
+            <h2>Perfil</h2>
+            <p>Veja e edite seu perfil.</p>
+            <a href="profile.html">Ir para perfil</a>
+        </div>
+        <div class="card">
+            <h2>Treino</h2>
+            <p>Acesse seus treinos.</p>
+            <a href="treino.html">Ir para Treino</a>
+        </div>
+    </div>
+
+    <script src="js/navbar.js"></script>
+</body>
+</html>

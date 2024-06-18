@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <script src="js/checkSession.js"></script>
+    <script src="js/checkSession2FA.js"></script>
+    <script src="js/profile.js" defer></script>
+    <script src="js/logout.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="img/fitpill.png" alt="logo" />
+            <h1>Fitpill</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="home.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+        </ul>
+        <div class="logout">
+            <button id="logoutButton">Logout</button>
+        </div>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <h2>Perfil</h2>
+        <div class="profile-info">
+            <div class="profile-item">
+                <p><strong>Nome:</strong> <span id="name"></span></p>
+            </div>
+            <div class="profile-item">
+                <p><strong>Email:</strong> <span id="email"></span></p>
+            </div>
+            <div class="profile-item">
+                <p><strong>Peso:</strong> <span id="weight"></span> <a href="mudarpeso.html">Editar</a></p>
+            </div>
+            <div class="profile-item">
+                <p><strong>Altura:</strong> <span id="height"></span> <a href="mudaraltura.html">Editar</a></p>
+            </div>
+            <div class="profile-item">
+                <p><strong>Dias de treino:</strong> <span id="trainingDays"></span> <a href="mudardias.html">Editar</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/navbar.js"></script>
+</body>
+</html>

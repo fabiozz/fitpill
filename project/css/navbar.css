@@ -58,6 +58,25 @@ nav ul li a:hover {
   background-color: #f5f5f5;
 }
 
+.logout {
+  margin-left: auto;
+}
+
+.logout button {
+  border: 1px solid #1f1f1f; 
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 95%;
+  font-weight: 400;
+  padding: 4px 12px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+.logout button:hover {
+  background-color: #f5f5f5;
+}
+
 .hamburger {
   display: none;
   cursor: pointer;

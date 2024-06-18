@@ -6,8 +6,8 @@ if (isset($_SESSION["user"])) {
 
     session_destroy();
 
-    echo "Logout successful";
+    echo "Saindo!";
 } else {
-    echo "No active session to logout";
+    echo "Há algum erro na sessao!";
 }
 ?>

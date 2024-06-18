@@ -56,7 +56,7 @@ async function verifyOTP() {
             resultadoDiv.innerHTML = res.message;
             resultadoDiv.style.color = 'green';
             alert("Usuário verificado com sucesso!");
-            window.location.href = 'home1.html'
+            window.location.href = 'homep.html'
         }
     } catch (error) {
         console.error('Erro:', error);

@@ -1,0 +1,71 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Alteração para direção de coluna */
+    min-height: 100vh; /* Garante que o corpo ocupe toda a altura da viewport */
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 20px; /* Espaço acima do título */
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1; /* Faz a section ocupar todo o espaço vertical disponível */
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.register-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Largura máxima do contêiner */
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: 20px; /* Espaço entre o topo da página e o conteúdo */
+    margin-bottom: 20px; /* Espaço entre o conteúdo e o rodapé */
+}
+
+.btn {
+    background: #582c2b;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px; /* Espaço acima do botão */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Espaço entre o título e a tabela */
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+table td {
+    font-size: 14px;
+}

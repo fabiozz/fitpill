@@ -1,0 +1,8 @@
+# Impedir o acesso direto ao diretório
+Options -Indexes
+
+# Bloquear o acesso ao arquivo .htaccess
+<Files .htaccess>
+    Order Allow,Deny
+    Deny from all
+</Files>

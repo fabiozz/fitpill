@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/treino.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Seu Plano de Treino e Dieta</title>
+    <script src="js/checkSession.js"></script>
+    <script src="js/checkSession2FA.js"></script>
+    <script src="js/treino.js"></script>
+    <script src="js/logout.js" defer></script>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <img src="img/fitpill.png" alt="logo" />
+            <h1>Fitpill</h1>
+        </div>
+        <ul>
+            <li>
+                <a href="home.html">Home</a>
+            </li>
+            <li>
+                <a href="#">Services</a>
+            </li>
+            <li>
+                <a href="#">Blog</a>
+            </li>
+            <li>
+                <a href="#">Contact Us</a>
+            </li>
+        </ul>
+        <div class="logout">
+            <button id="logoutButton">Logout</button>
+        </div>
+        <div class="hamburger">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+    </nav>
+    <section class="register">
+        <div class="register-card">
+            <h1>Seu Plano de Treino</h1>
+            <table border="1" id="planTable">
+                <tr>
+                    <th>Dia</th>
+                    <th>Treino</th>
+                </tr>
+            </table>
+        </div>
+    </section>
+</body>
+</html>
